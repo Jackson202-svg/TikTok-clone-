@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jr Stit | 2016-2026 Music Archive</title>
+    <meta name="description" content="Jr Stit Media - 2016-2026 Music & Nostalgia Archive">
+    <title>Jr Stit | Music & Nostalgia Hub</title>
     <style>
         :root {
             --accent-cyan: #00f2ea;
@@ -22,9 +23,9 @@
             transition: opacity 0.8s ease;
         }
         .spinner {
-            width: 50px; height: 50px;
-            border: 5px solid #333;
-            border-top: 5px solid var(--accent-cyan);
+            width: 40px; height: 40px;
+            border: 4px solid #333;
+            border-top: 4px solid var(--accent-cyan);
             border-radius: 50%;
             animation: spin 1s linear infinite;
         }
@@ -36,6 +37,7 @@
             color: white; margin: 0; overflow-x: hidden;
         }
 
+        /* Layout */
         nav {
             width: 100%; padding: 15px 0;
             background: rgba(10, 10, 10, 0.9);
@@ -45,44 +47,55 @@
         }
 
         .login-btn {
-            padding: 10px 20px; border-radius: 25px; font-weight: bold;
-            cursor: pointer; border: none; transition: 0.3s;
+            padding: 8px 18px; border-radius: 20px; font-weight: bold;
+            cursor: pointer; border: none; transition: 0.3s; font-size: 0.85rem;
         }
         .btn-google { background: white; color: #444; }
         .btn-tiktok { background: #000; color: white; border: 1px solid var(--accent-pink); }
 
         header { text-align: center; padding: 40px 20px; }
         header h1 {
-            font-size: clamp(2.5rem, 8vw, 4rem);
+            font-size: clamp(2rem, 6vw, 3.5rem);
             margin: 0;
             background: linear-gradient(45deg, var(--accent-cyan), var(--accent-pink));
             -webkit-background-clip: text; -webkit-text-fill-color: transparent;
         }
 
-        .search-container { margin: 20px auto; width: 80%; max-width: 600px; }
+        .search-container { margin: 20px auto; width: 85%; max-width: 500px; }
         #videoSearch {
             width: 100%; padding: 12px 20px; border-radius: 30px;
-            border: 2px solid #333; background: #1e1e1e; color: white; outline: none;
+            border: 2px solid #333; background: #1e1e1e; color: white; outline: none; box-sizing: border-box;
         }
 
+        /* Form Area */
         .form-container {
-            max-width: 500px; margin: 20px auto 60px;
-            background: var(--card-bg); padding: 30px; border-radius: 20px; border: 1px solid #333;
+            max-width: 450px; margin: 0 auto 50px;
+            background: var(--card-bg); padding: 25px; border-radius: 15px; border: 1px solid #333;
+        }
+        .form-container input, .form-container textarea {
+            width: 100%; padding: 10px; margin-bottom: 10px;
+            border-radius: 5px; border: 1px solid #444; background: #000; color: white;
+            box-sizing: border-box;
+        }
+        .submit-btn {
+            width: 100%; padding: 12px; background: var(--accent-pink);
+            color: white; border: none; border-radius: 5px; font-weight: bold; cursor: pointer;
         }
 
+        /* Video Grid */
         .video-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(325px, 1fr));
-            gap: 25px; width: 95%; max-width: 1400px; margin: 0 auto 100px;
+            grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+            gap: 20px; width: 95%; max-width: 1300px; margin: 0 auto 80px;
         }
 
         .video-card {
-            background: var(--card-bg); border-radius: 15px; padding: 12px;
+            background: var(--card-bg); border-radius: 15px; padding: 10px;
             border: 1px solid #222; transition: 0.3s;
         }
-        .video-card:hover { transform: translateY(-5px); border-color: var(--accent-cyan); }
+        .video-card:hover { border-color: var(--accent-cyan); transform: translateY(-3px); }
 
-        footer { text-align: center; padding: 60px; background: #000; border-top: 1px solid #222; }
+        footer { text-align: center; padding: 40px; color: #666; font-size: 0.8rem; border-top: 1px solid #222; }
     </style>
 </head>
 <body>
@@ -95,92 +108,51 @@
     </nav>
 
     <header>
-        <h1>Jr Stit Media Hub</h1>
+        <h1>Jr Stit Portal</h1>
         <div class="search-container">
-            <input type="text" id="videoSearch" placeholder="Search the 2016-2026 Archive..." onkeyup="searchVideos()">
+            <input type="text" id="videoSearch" placeholder="Search mashups & nostalgia..." onkeyup="searchVideos()">
         </div>
     </header>
 
     <div class="form-container">
-        <h3 style="text-align:center; color: var(--accent-cyan)">Submit a New Mix</h3>
-        <form action="https://formspree.io/f/YOUR_ID" method="POST" style="display:flex; flex-direction:column; gap:10px;">
-            <input type="text" name="name" placeholder="Artist Name" required style="padding:10px; border-radius:5px; border:none;">
-            <input type="url" name="link" placeholder="TikTok URL" required style="padding:10px; border-radius:5px; border:none;">
-            <button type="submit" style="padding:12px; background:var(--accent-pink); color:white; border:none; border-radius:5px; font-weight:bold; cursor:pointer;">Send to Jr Stit</button>
+        <h3 style="margin-top:0; color: var(--accent-cyan); text-align: center;">Submit a Video</h3>
+        <form action="https://formspree.io/f/YOUR_ID" method="POST">
+            <input type="text" name="name" placeholder="Mix Name" required>
+            <input type="url" name="url" placeholder="TikTok URL" required>
+            <button type="submit" class="submit-btn">Add to Archive</button>
         </form>
     </div>
 
     <main class="video-grid" id="videoGrid">
-        <div class="video-card" data-tags="jrstit 2015 wooow">
-            <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@jrstit/video/7564047592649231638" data-video-id="7564047592649231638"></blockquote>
-        </div>
-
-        <div class="video-card" data-tags="jrstit kygo selena gomez it ain't me">
-            <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@jrstit/video/7588852678151703810" data-video-id="7588852678151703810"></blockquote>
-        </div>
-
-        <div class="video-card" data-tags="jrstit everything mix">
-            <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@jrstit/video/7587020753099328791" data-video-id="7587020753099328791"></blockquote>
-        </div>
-
-        <div class="video-card" data-tags="jrstit work work work rihanna">
-            <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@jrstit/video/7586029815816260886" data-video-id="7586029815816260886"></blockquote>
-        </div>
-
-        <div class="video-card" data-tags="jrstit fireflies owl city believe your eyes">
-            <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@jrstit/video/7585655930675662082" data-video-id="7585655930675662082"></blockquote>
-        </div>
-
-        <div class="video-card" data-tags="marshmello alone feels good">
-            <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@marshmello/video/7562274993267019063" data-video-id="7562274993267019063"></blockquote>
-        </div>
-
-        <div class="video-card" data-tags="notjasonkai starving roses chainsmokers">
-            <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@notjasonkai/video/7581994287294991630" data-video-id="7581994287294991630"></blockquote>
-        </div>
-
-        <div class="video-card" data-tags="jrstit no lie dua lipa zara larsson">
-            <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@jrstit/video/7576269236495076630" data-video-id="7576269236495076630"></blockquote>
-        </div>
-
-        <div class="video-card" data-tags="marshmello martin garrix legendary night">
-            <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@marshmello/video/7564800624307604750" data-video-id="7564800624307604750"></blockquote>
-        </div>
-
-        <div class="video-card" data-tags="frizzonx aesthetic 2016 2026 alive">
-            <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@frizzonx/video/7592942055085640991" data-video-id="7592942055085640991"></blockquote>
-        </div>
-
-        <div class="video-card" data-tags="djkartier ibiza pill 2016 2026">
-            <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@djkartier/video/7591210955346939149" data-video-id="7591210955346939149"></blockquote>
-        </div>
-
-        <div class="video-card" data-tags="djkartier choice year producer">
-            <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@djkartier/video/7590616627218091278" data-video-id="7590616627218091278"></blockquote>
-        </div>
-
-        <div class="video-card" data-tags="nostalgia flashback 9 years 2016">
-            <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@nostalgia.flashback/video/7545181861614570807" data-video-id="7545181861614570807"></blockquote>
-        </div>
-
-        <div class="video-card" data-tags="chinook military helicopter josh mashup">
-            <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@voice.of.us6/video/7576671707604241695" data-video-id="7576671707604241695"></blockquote>
-        </div>
+        <div class="video-card" data-tags="jrstit 2015 nostalgia"><blockquote class="tiktok-embed" cite="https://www.tiktok.com/@jrstit/video/7564047592649231638" data-video-id="7564047592649231638"></blockquote></div>
+        <div class="video-card" data-tags="jrstit kygo selena gomez"><blockquote class="tiktok-embed" cite="https://www.tiktok.com/@jrstit/video/7588852678151703810" data-video-id="7588852678151703810"></blockquote></div>
+        <div class="video-card" data-tags="jrstit everything mix mashup"><blockquote class="tiktok-embed" cite="https://www.tiktok.com/@jrstit/video/7587020753099328791" data-video-id="7587020753099328791"></blockquote></div>
+        <div class="video-card" data-tags="jrstit work rihanna mix"><blockquote class="tiktok-embed" cite="https://www.tiktok.com/@jrstit/video/7586029815816260886" data-video-id="7586029815816260886"></blockquote></div>
+        <div class="video-card" data-tags="jrstit fireflies owl city"><blockquote class="tiktok-embed" cite="https://www.tiktok.com/@jrstit/video/7585655930675662082" data-video-id="7585655930675662082"></blockquote></div>
+        <div class="video-card" data-tags="marshmello alone feels good"><blockquote class="tiktok-embed" cite="https://www.tiktok.com/@marshmello/video/7562274993267019063" data-video-id="7562274993267019063"></blockquote></div>
+        <div class="video-card" data-tags="notjasonkai starving roses chainsmokers"><blockquote class="tiktok-embed" cite="https://www.tiktok.com/@notjasonkai/video/7581994287294991630" data-video-id="7581994287294991630"></blockquote></div>
+        <div class="video-card" data-tags="jrstit no lie dua lipa"><blockquote class="tiktok-embed" cite="https://www.tiktok.com/@jrstit/video/7576269236495076630" data-video-id="7576269236495076630"></blockquote></div>
+        <div class="video-card" data-tags="marshmello martin garrix legendary"><blockquote class="tiktok-embed" cite="https://www.tiktok.com/@marshmello/video/7564800624307604750" data-video-id="7564800624307604750"></blockquote></div>
+        <div class="video-card" data-tags="frizzonx aesthetic alive 2016"><blockquote class="tiktok-embed" cite="https://www.tiktok.com/@frizzonx/video/7592942055085640991" data-video-id="7592942055085640991"></blockquote></div>
+        <div class="video-card" data-tags="djkartier ibiza pill piano"><blockquote class="tiktok-embed" cite="https://www.tiktok.com/@djkartier/video/7591210955346939149" data-video-id="7591210955346939149"></blockquote></div>
+        <div class="video-card" data-tags="djkartier year choice producer"><blockquote class="tiktok-embed" cite="https://www.tiktok.com/@djkartier/video/7590616627218091278" data-video-id="7590616627218091278"></blockquote></div>
+        <div class="video-card" data-tags="nostalgia flashback 9 years 2016"><blockquote class="tiktok-embed" cite="https://www.tiktok.com/@nostalgia.flashback/video/7545181861614570807" data-video-id="7545181861614570807"></blockquote></div>
+        <div class="video-card" data-tags="chinook military mashup helicopter"><blockquote class="tiktok-embed" cite="https://www.tiktok.com/@voice.of.us6/video/7576671707604241695" data-video-id="7576671707604241695"></blockquote></div>
     </main>
 
     <footer>
-        <p>&copy; 2026 Jr Stit Media Mix. All Rights Reserved.</p>
+        <p>&copy; 2026 Jr Stit Media Hub. Developed for GitHub Pages.</p>
     </footer>
 
     <script>
-        // Loader
+        // Smooth Loader
         window.addEventListener('load', () => {
             const loader = document.getElementById('loader');
             loader.style.opacity = '0';
-            setTimeout(() => { loader.style.display = 'none'; }, 800);
+            setTimeout(() => { loader.style.display = 'none'; }, 600);
         });
 
-        // Search Logic
+        // Live Search
         function searchVideos() {
             let input = document.getElementById('videoSearch').value.toLowerCase();
             let cards = document.getElementsByClassName('video-card');
